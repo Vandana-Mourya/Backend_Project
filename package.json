@@ -4,7 +4,7 @@
   "description": "a backend project with chai aur code",
   "type": "module",
   "main": "index.js",
-  "type": "module",
+
   "scripts": {
     "dev": "nodemon src/index.js"
   },
