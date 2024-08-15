@@ -4,7 +4,6 @@
   "description": "a backend project with chai aur code",
   "type": "module",
   "main": "index.js",
-
   "scripts": {
     "dev": "nodemon src/index.js"
   },
@@ -15,6 +14,7 @@
   "author": "Vandana Mourya",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3"
   }
 }
