@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-import jwt, { sign } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const userSchema = new mongoose.Schema(
     {
 
-        user: {
+        username: {
             type: String,
             required: true,
             unique: true,
@@ -23,12 +23,13 @@ const userSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
+        coverImage: {
+            type: String,
+            // required: true,
+        },
         avatar: {
             type: String, //cloudinary url will be here
             required: true,
-        },
-        coverImage: {
-            type: String, // cloudinary url
         },
         watchHistory: [
             {
