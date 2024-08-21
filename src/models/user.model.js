@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+
 const userSchema = new mongoose.Schema(
     {
 
@@ -9,7 +10,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
-            index: true,
+            // index: true,
             trim: true,
         },
         email: {
@@ -18,14 +19,13 @@ const userSchema = new mongoose.Schema(
             unique: true,
             trim: true,
         },
+        coverImage :{
+            type: String
+        },
         fullName: {
             type: String,
             required: true,
             trim: true,
-        },
-        coverImage: {
-            type: String,
-            // required: true,
         },
         avatar: {
             type: String, //cloudinary url will be here

@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs' // fs => file system directly access from node.js 
+import { User } from '../models/user.model.js';
 
 // Configuration
 cloudinary.config({
@@ -8,10 +9,13 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+//duplicate entries checking and deleting the file and
 // file uploading
+
 
 const uploadOnCloudinary = async function(localFilePath){
     try {
+
         if(!localFilePath) return null
         const response = await cloudinary.uploader.upload(localFilePath, {
             resource_type: "auto"

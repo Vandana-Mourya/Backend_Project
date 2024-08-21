@@ -10,7 +10,7 @@ const connectDB = async () => {
        
     } catch (error) {
         console.log("ERROR: MONGODB connection FAILED!", error);
-        // process.exit(1)
+        process.exit(1)
         
     }
 }
