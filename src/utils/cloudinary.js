@@ -1,6 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs' // fs => file system directly access from node.js 
-import { User } from '../models/user.model.js';
 
 // Configuration
 cloudinary.config({
@@ -31,6 +30,7 @@ const uploadOnCloudinary = async function(localFilePath){
         fs.unlinkSync(localFilePath) // remove the locally saved temporary file as the upload operation got failed.
         return null
     }
+    
 }
 
 export {uploadOnCloudinary}
