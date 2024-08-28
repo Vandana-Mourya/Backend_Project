@@ -127,8 +127,8 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id)
-    console.log("accessToken: ", accessToken);
-    console.log("refreshToken : ", refreshToken);
+    // console.log("accessToken: ", accessToken);
+    // console.log("refreshToken : ", refreshToken);
 
 
 
