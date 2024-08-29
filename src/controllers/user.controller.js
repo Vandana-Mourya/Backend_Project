@@ -193,7 +193,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         // const accessToken = user.generateAccessTokens();
         // const refreshToken = user.generateRefreshTokens();
 
-        const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
+        const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id)
 
         // user.refreshToken = refreshToken
 
@@ -220,14 +220,14 @@ const changePassword = asyncHandler(async (req, res) => {
 
     const { oldPassword, newPassword } = req.body
     console.log("oldPassword: ", oldPassword, "newPassword: ", newPassword);
-    
+
 
     const user = await User.findById(req.user._id)
     console.log("user: ", user);
-    
+
     const isPasswordValid = await user.isPasswordCorrect(oldPassword)
     console.log("isPasswordValid ", isPasswordValid);
-    
+
 
     if (!isPasswordValid) {
         throw new ApiErrors(400, "Invalid Password")
@@ -235,8 +235,8 @@ const changePassword = asyncHandler(async (req, res) => {
 
     user.password = newPassword
     console.log("user.password: ", user.pass);
-    
-    user.save({validateBeforeSave : false})
+
+    user.save({ validateBeforeSave: false })
 
     res
         .status(200)
@@ -264,6 +264,7 @@ const updateUser = asyncHandler(async (req, res) => {
     },
         { new: true }).select("-password")
 
+    console.log(user)
     return res
         .status(200)
         .json(new ApiResponse(200, "Information Updated Successfully", user))
@@ -305,7 +306,7 @@ const updateCoverImage = asyncHandler(async (req, res) => {
 
     const coverImageLocalPath = req.file?.path
     console.log("path: ", req.file?.path);
-    
+
 
     if (!coverImageLocalPath) {
         throw new ApiErrors(400, "Cover Image File is required")
@@ -323,7 +324,7 @@ const updateCoverImage = asyncHandler(async (req, res) => {
         }
     }, { new: true }).select("-password")
     console.log("user: ", user);
-    
+
 
     return res
         .status(200)
@@ -415,7 +416,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
             $lookup: {
                 from: "videos",
                 localField: "watchHistory",
-                foreignField: "-id",
+                foreignField: "_id",
                 as: "watchHistory",
                 pipeline: [
                     {

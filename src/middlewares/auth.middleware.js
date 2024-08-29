@@ -6,7 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 export const verifyToken = asyncHandler(async (req, res, next) => {
     try {
        
-        console.log("refreshToken: ", req.cookies)
+        // console.log("refreshToken: ", req.cookies)
 
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
         if (!token) {
