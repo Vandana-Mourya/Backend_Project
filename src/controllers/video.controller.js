@@ -174,22 +174,13 @@ const updateVideo = asyncHandler(async (req, res) => {
 
 const deleteAVideo = asyncHandler(async (req, res) => {
 
-    const { videoId } = req.body
+    const { videoId } = req.params
 
-    const video = await Video.findOne({_id: videoId, owner: req.user._id})
-
+    const result = await Video.findOneAndDelete({_id: videoId, owner: req.user._id})
     
-    if(!video){
-        
-        throw new ApiErrors(400, "You do not own this video, you have no access to delete this video")
+    if(!result){   
+        throw new ApiErrors(400, "You can't delete this video as you're not the owner of this video")
     }
-    console.log("video.owner = ", video.owner, "login user: ", req.user._id)
-    
-    if(!videoId){
-        throw new ApiErrors(400, "Please provide video Id to delete a video")
-    }
-
-    const result = await Video.deleteOne({_id : videoId})
 
     if(result.deletedCount === 0){
         throw new ApiErrors(400, "Video not found")
