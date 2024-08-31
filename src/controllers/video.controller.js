@@ -182,10 +182,6 @@ const deleteAVideo = asyncHandler(async (req, res) => {
         throw new ApiErrors(400, "You can't delete this video as you're not the owner of this video")
     }
 
-    if(result.deletedCount === 0){
-        throw new ApiErrors(400, "Video not found")
-    }
-
     return res
     .status(200)
     .json(
