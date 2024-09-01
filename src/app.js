@@ -20,13 +20,15 @@ import vidoeRoutes from './routes/video.routes.js'
 import tweetRoutes from './routes/tweet.routes.js'
 import playlistRoutes from './routes/playlist.routes.js'
 import commentRoutes from './routes/comment.routes.js'
+import subscriptionRoutes from './routes/subscription.routes.js'
 
 //routes declaration
 app.use("/api/v1/users", userRoutes)
 app.use('/api/v1/videos', vidoeRoutes)
 app.use('/api/v1/tweets', tweetRoutes)
 app.use('/api/v1/playlists', playlistRoutes)
-app.use('/api/v1', commentRoutes)
+app.use('/api/v1/videos/comments', commentRoutes)
+app.use('/api/v1/users/subscriptions', subscriptionRoutes)
 
 // http://localhost:8000/api/v1/users/register
 
