@@ -16,9 +16,9 @@ import {upload} from "../middlewares/multer.middleware.js"
 import { verifyToken } from "../middlewares/auth.middleware.js";
 
 
-const routes = Router()
+const router = Router()
 
-routes.route('/register').post(
+router.route('/register').post(
     upload.fields([
         {
             name: "coverImage",
@@ -31,17 +31,17 @@ routes.route('/register').post(
     ]),
     registerUser)
 
-routes.route('/login').post(loginUser)
+router.route('/login').post(loginUser)
 
 // secured
-routes.route('/logout').post(verifyToken, logoutUser)
-routes.route('/refreshToken').post(refreshAccessToken)
-routes.route('/change-password').post(verifyToken, changePassword)
-routes.route('/current-user').get(verifyToken, getCurrentUser)
-routes.route('/update-user').patch(verifyToken, updateUser)
-routes.route('/avatar').post(verifyToken, upload.single('avatar'), updateAvatar)
-routes.route('/coverImage').post(verifyToken, upload.single('coverImage'),updateCoverImage)
-routes.route('/c/:username').get(verifyToken, getUserChannelProfile)
-routes.route('/watchHistory').get(verifyToken, getWatchHistory)
+router.route('/logout').post(verifyToken, logoutUser)
+router.route('/refreshToken').post(refreshAccessToken)
+router.route('/change-password').post(verifyToken, changePassword)
+router.route('/current-user').get(verifyToken, getCurrentUser)
+router.route('/update-user').patch(verifyToken, updateUser)
+router.route('/avatar').post(verifyToken, upload.single('avatar'), updateAvatar)
+router.route('/coverImage').post(verifyToken, upload.single('coverImage'),updateCoverImage)
+router.route('/c/:username').get(verifyToken, getUserChannelProfile)
+router.route('/watchHistory').get(verifyToken, getWatchHistory)
 
-export default routes
+export default router

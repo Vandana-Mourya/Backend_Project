@@ -3,12 +3,12 @@ import { createComment, deleteComment, getAllComments, updateComment } from "../
 import { verifyToken } from '../middlewares/auth.middleware.js'
 
 
-const routes = Router()
-routes.use(verifyToken)
+const router = Router()
+router.use(verifyToken)
 
-routes.route('/:videoId').post(createComment)
-routes.route('/get-comments/:videoId').get(getAllComments)
-routes.route('/update-comment/:commentId').patch(updateComment)
-routes.route('/delete-comment/:commentId').delete(deleteComment)
+router.route('/:videoId').post(createComment)
+router.route('/get-comments/:videoId').get(getAllComments)
+router.route('/update-comment/:commentId').patch(updateComment)
+router.route('/delete-comment/:commentId').delete(deleteComment)
 
-export default routes
+export default router

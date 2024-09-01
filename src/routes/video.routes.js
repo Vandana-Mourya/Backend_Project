@@ -3,11 +3,11 @@ import { deleteAVideo, getAllVideos, getVideoById, togglePublishStatus, updateVi
 import { verifyToken } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
-const routes = Router()
-routes.use(verifyToken)
+const router = Router()
+router.use(verifyToken)
 
-routes.route('/get-videos').get(getAllVideos)
-routes.route('/upload-video').post(upload.fields([
+router.route('/get-videos').get(getAllVideos)
+router.route('/upload-video').post(upload.fields([
     {
         name: "videoFile",
         maxCount: 1
@@ -17,13 +17,13 @@ routes.route('/upload-video').post(upload.fields([
         maxCount: 1
     }
 ]), uploadVideo)
-routes.route('/:videoId').get(getVideoById)
-routes.route('/update-video').patch(upload.fields([
+router.route('/:videoId').get(getVideoById)
+router.route('/update-video').patch(upload.fields([
     {
         name: "thumbnails",
         max: 1
     }
 ]), updateVideo)
-routes.route('/delete-video').delete(deleteAVideo)
-routes.route('/toggle/publish/:videoId').patch(togglePublishStatus)
-export default routes
+router.route('/delete-video').delete(deleteAVideo)
+router.route('/toggle/publish/:videoId').patch(togglePublishStatus)
+export default router

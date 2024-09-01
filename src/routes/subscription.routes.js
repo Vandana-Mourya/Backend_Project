@@ -2,13 +2,13 @@ import { Router } from "express";
 import { getChannelSubscribedTo, getUserChannelSubscribers, toggleSubscription } from "../controllers/subscription.controller.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 
-const routes = Router()
-routes.use(verifyToken)
+const router = Router()
+router.use(verifyToken)
 
-routes.route('/:channelId').post(toggleSubscription)
-routes.route('/get-subscribers/:channelId').get(getUserChannelSubscribers)
-routes.route('/get-channel-list/:channelId').get(getChannelSubscribedTo)
+router.route('/:channelId').post(toggleSubscription)
+router.route('/get-subscribers/:channelId').get(getUserChannelSubscribers)
+router.route('/get-channel-list/:channelId').get(getChannelSubscribedTo)
 
 
 
-export default routes
+export default router
