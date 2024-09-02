@@ -22,6 +22,8 @@ import playlistRoutes from './routes/playlist.routes.js'
 import commentRoutes from './routes/comment.routes.js'
 import subscriptionRoutes from './routes/subscription.routes.js'
 import likeRoutes from './routes/like.routes.js'
+import dashboardRoutes from './routes/dashboard.routes.js'
+import healthCheck from './routes/healthcheck.routes.js'
 
 //routes declaration
 app.use("/api/v1/users", userRoutes)
@@ -31,6 +33,8 @@ app.use('/api/v1/playlists', playlistRoutes)
 app.use('/api/v1/videos/comments', commentRoutes)
 app.use('/api/v1/users/subscriptions', subscriptionRoutes)
 app.use('/api/v1/likes', likeRoutes)
+app.use('/api/v1/user/dashboard', dashboardRoutes)
+app.use('/api/v1/healthcheck', healthCheck)
 
 // http://localhost:8000/api/v1/users/register
 

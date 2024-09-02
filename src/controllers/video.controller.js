@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import { ApiResponse } from '../utils/ApiResponse.js'
 import { ApiErrors } from '../utils/ApiError.js'
@@ -216,11 +215,38 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
     )
 })
 
+const videoViews = asyncHandler(async(req, res) => {
+    const { videoId } = req.params
+    
+    const video = await Video.findById(videoId)
+    console.log(video)
+    if(!video){
+        throw new ApiErrors(400, "Video not found!")
+    }
+
+    if(!(video.owner.toString() === req.user._id.toString())){
+    video.views += 1;
+    }
+    await video.save()
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, "Video viewed", {
+            video,
+            views:video.view
+        })
+    )
+
+
+})
+
 export {
     getAllVideos,
     uploadVideo,
     getVideoById,
     updateVideo,
     deleteAVideo,
-    togglePublishStatus
+    togglePublishStatus,
+    videoViews
 }
